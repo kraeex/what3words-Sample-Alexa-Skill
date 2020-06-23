@@ -1,0 +1,22 @@
+{
+  "name": "3-word-go-open-source",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ask-sdk-core": "^2.7.0",
+    "ask-sdk-model": "^1.18.0",
+    "i18next": "^15.0.5",
+    "i18next-sprintf-postprocessor": "^0.2.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "serverless": "^1.50.1",
+    "uuid": "^3.3.2",
+    "w3w-node-wrapper": "^2.3.2"
+  }
+}

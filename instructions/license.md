@@ -1,0 +1,1 @@
+You acknowledge and accept that the sample code and the associated 3 word addresses are owned by what3words limited as the copyright holder. Any functional use of the code will require you to consent to [what3words API Licence Agreement](https://what3words.com/api-licence-agreement/) and be governed by the same.

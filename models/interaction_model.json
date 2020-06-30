@@ -1,462 +1,462 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "three word source",
-            "intents": [
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "GetTaxiFromThreeWordsIntent",
-                    "slots": [
-                        {
-                            "name": "whatThreewordOrigin",
-                            "type": "whatThreewords",
-                            "samples": [
-                                "take me from {whatThreewordOrigin}",
-                                "come to {whatThreewordOrigin}",
-                                "{whatThreewordOrigin} please",
-                                "I need uber to come to {whatThreewordOrigin}",
-                                "please pick me from {whatThreewordOrigin}",
-                                "I want a pick up from {whatThreewordOrigin}",
-                                "{whatThreewordOrigin}"
-                            ]
-                        }
-                    ],
-                    "samples": [
-                        "three words address",
-                        "three word address",
-                        "{whatThreewordOrigin}"
-                    ]
-                },
-                {
-                    "name": "AMAZON.YesIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.NoIntent",
-                    "samples": []
-                },
-                {
-                    "name": "CheckOrderIntent",
-                    "slots": [],
-                    "samples": [
-                        "check uber",
-                        "check ride",
-                        "where is uber",
-                        "what is the status of my uber",
-                        "where is my ride",
-                        "check my ride",
-                        "check the ride",
-                        "is my taxi coming",
-                        "is my uber coming",
-                        "what is the status of my ride",
-                        "check my uber ride",
-                        "check the order",
-                        "check my order",
-                        "check if taxi is coming",
-                        "check uber status",
-                        "check order",
-                        "check uber ride"
-                    ]
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
-                },
-                {
-                    "name": "CancelOrderIntent",
-                    "slots": [],
-                    "samples": [
-                        "cancel ride",
-                        "cancel taxi",
-                        "cancel uber",
-                        "cancel my taxi",
-                        "cancel my order",
-                        "cancel my uber",
-                        "delete ride",
-                        "delete taxi",
-                        "delete uber",
-                        "delete my taxi"
-                    ]
-                },
-                {
-                    "name": "GetTaxiFromDeviceIntent",
-                    "slots": [],
-                    "samples": [
-                        "my g. p. s.",
-                        "use g. p. s.",
-                        "use my g. p. s.",
-                        "my phone location ",
-                        "my g. p. s. location",
-                        "use g. p. s. device",
-                        "device g. p. s. location",
-                        "g. p. s.",
-                        "g. p. s. of my device ",
-                        "device address",
-                        "the device address",
-                        "device",
-                        "here",
-                        "use device address",
-                        "device to",
-                        "you can use the device address",
-                        "my address",
-                        "my location ",
-                        "my device location ",
-                        "current g. p. s. location ",
-                        "g. p. s. location ",
-                        "current location "
-                    ]
-                },
-                {
-                    "name": "GetTaxi",
-                    "slots": [
-                        {
-                            "name": "whatThreewordDest",
-                            "type": "whatThreewords",
-                            "samples": [
-                                "{whatThreewordDest}",
-                                "i would like to go to {whatThreewordDest} please",
-                                "take me to {whatThreewordDest} please",
-                                "{whatThreewordDest} please",
-                                "take me to {whatThreewordDest}",
-                                "my destination's what three words are {whatThreewordDest}",
-                                "i want an uber to take me to {whatThreewordDest}",
-                                "i need a taxi to {whatThreewordDest}",
-                                "my destination is {whatThreewordDest}",
-                                "at the what three words {whatThreewordDest}",
-                                "at {whatThreewordDest}",
-                                "i want a lift to {whatThreewordDest}",
-                                "I would like to go to {whatThreewordDest}"
-                            ]
-                        },
-                        {
-                            "name": "whatThreewordOrigin",
-                            "type": "whatThreewords"
-                        }
-                    ],
-                    "samples": [
-                        "order me an Uber",
-                        "get a ride from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get a ride to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get ride to {whatThreewordDest}",
-                        "order me a ride to {whatThreewordDest}",
-                        "get me a ride to {whatThreewordDest}",
-                        "get a ride to {whatThreewordDest}",
-                        "get me a ride to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get me a ride from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order me a ride from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order me a ride to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get me a ride",
-                        "order me a ride",
-                        "get an uber",
-                        "get an uber to {whatThreewordDest}",
-                        "get an uber to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get an uber from {whatThreewordOrigin} to {whatThreewordDest} ",
-                        "order me a uber to a three word address",
-                        "order me a taxi to three word address",
-                        "order me a taxi with three word address",
-                        "order me an uber with three word address",
-                        "order me a taxi to a three word address",
-                        "get a taxi to {whatThreewordDest}",
-                        "get me taxi to {whatThreewordDest}",
-                        "get me a taxi to {whatThreewordDest}",
-                        "order a taxi to {whatThreewordDest}",
-                        "order me a taxi to {whatThreewordDest}",
-                        "taxi to {whatThreewordDest}",
-                        "a taxi to {whatThreewordDest}",
-                        "get a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get taxi to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get me a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "order a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "order me a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "taxi to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get taxi from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get me a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order me a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "taxi from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get a taxi",
-                        "get taxi",
-                        "get me a taxi",
-                        "order a taxi",
-                        "order me a taxi",
-                        "taxi",
-                        "a taxi",
-                        "book a taxi to {whatThreewordDest}",
-                        "get me an uber to {whatThreewordDest}",
-                        "order an uber to {whatThreewordDest}",
-                        "get uber to {whatThreewordDest}",
-                        "order me an uber to {whatThreewordDest}",
-                        "uber to {whatThreewordDest}",
-                        "an uber to {whatThreewordDest}",
-                        "get me a cab to {whatThreewordDest}",
-                        "order a cab to {whatThreewordDest}",
-                        "get a cab to {whatThreewordDest}",
-                        "get cab to {whatThreewordDest}",
-                        "order me a cab to {whatThreewordDest}",
-                        "cab to {whatThreewordDest}",
-                        "a cab to {whatThreewordDest}",
-                        "book a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get me an uber to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "order an uber to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get uber to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get me uber to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "order me an uber to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "uber to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get me a cab to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "order a cab to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get a cab to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "get me cab to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "order me a cab to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "cab to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "a cab to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "book a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get me an uber from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order an uber from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get uber from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order me an uber from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "uber from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "an uber from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get me a cab from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order a cab from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get a cab from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get me cab from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order me a cab from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "cab from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "a cab from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order me a taxi with what three words",
-                        "book a taxi",
-                        "get me an uber",
-                        "order an uber",
-                        "get uber",
-                        "order us an uber",
-                        "uber",
-                        "an uber",
-                        "get me a cab",
-                        "order a cab",
-                        "get a cab",
-                        "get cab",
-                        "order me a cab",
-                        "cab",
-                        "a cab",
-                        "order me a cab with what three words",
-                        "book a cab",
-                        "book a cab to {whatThreewordDest}",
-                        "book a cab to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "book a cab from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "order me an uber with what three words",
-                        "book an uber",
-                        "book an uber to {whatThreewordDest}",
-                        "book an uber to {whatThreewordDest} from {whatThreewordOrigin}",
-                        "book an uber from {whatThreewordOrigin} to {whatThreewordDest}",
-                        "get an uber from {whatThreewordOrigin}",
-                        "get a taxi from {whatThreewordOrigin}",
-                        "get me taxi from {whatThreewordOrigin}",
-                        "get me a taxi from {whatThreewordOrigin}",
-                        "order a taxi from {whatThreewordOrigin}",
-                        "order me a taxi from {whatThreewordOrigin}",
-                        "taxi from {whatThreewordOrigin}",
-                        "a taxi from {whatThreewordOrigin}",
-                        "book a taxi from {whatThreewordOrigin}",
-                        "get me an uber from {whatThreewordOrigin}",
-                        "order an uber from {whatThreewordOrigin}",
-                        "get uber from {whatThreewordOrigin}",
-                        "uber from {whatThreewordOrigin}",
-                        "order me an uber from {whatThreewordOrigin}",
-                        "an uber from {whatThreewordOrigin}",
-                        "get me a cab from {whatThreewordOrigin}",
-                        "order a cab from {whatThreewordOrigin}",
-                        "get a cab from {whatThreewordOrigin}",
-                        "get me cab from {whatThreewordOrigin}",
-                        "order me a cab from {whatThreewordOrigin}",
-                        "cab from {whatThreewordOrigin}",
-                        "a cab from {whatThreewordOrigin}"
-                    ]
-                }
-            ],
-            "types": [
-                {
-                    "name": "whatThreewords",
-                    "values": [
-                        {
-                            "name": {
-                                "value": "filled count soap"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "index home raft"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "split bolts brains"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "hotels loses roofs"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "pigs stamp unity"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "curve held clap"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "waving wiped weedy"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "vocal send famous"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "pirate share squad"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "cycles grew fleet"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "rabble closet cave"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "body hoping dime"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "phones tomato vivid"
-                            }
-                        }
-                    ]
-                }
-            ]
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "three word go",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
         },
-        "dialog": {
-            "intents": [
-                {
-                    "name": "GetTaxiFromThreeWordsIntent",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "whatThreewordOrigin",
-                            "type": "whatThreewords",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.856138527888.200732450392"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "GetTaxiFromDeviceIntent",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": []
-                },
-                {
-                    "name": "GetTaxi",
-                    "delegationStrategy": "ALWAYS",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "whatThreewordDest",
-                            "type": "whatThreewords",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.1412151498554.1252618027283"
-                            }
-                        },
-                        {
-                            "name": "whatThreewordOrigin",
-                            "type": "whatThreewords",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        }
-                    ]
-                }
-            ],
-            "delegationStrategy": "SKILL_RESPONSE"
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
         },
-        "prompts": [
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "GetTaxiFromThreeWordsIntent",
+          "slots": [
             {
-                "id": "Elicit.Slot.865830253477.986684661633",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "what three word address are you looking for?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.856138527888.200732450392",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Where do you want to be picked up from?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.1244858290138.4652061210",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "where would you like to go?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.1412151498554.1252618027283",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "What three word address would you like to go to?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.425053352077.1282420019429",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Where do you want to picked up from?"
-                    }
-                ]
+              "name": "whatThreewordOrigin",
+              "type": "whatThreewords",
+              "samples": [
+                "take me from {whatThreewordOrigin}",
+                "come to {whatThreewordOrigin}",
+                "{whatThreewordOrigin} please",
+                "I need uber to come to {whatThreewordOrigin}",
+                "please pick me from {whatThreewordOrigin}",
+                "I want a pick up from {whatThreewordOrigin}",
+                "{whatThreewordOrigin}"
+              ]
             }
+          ],
+          "samples": [
+            "three words address",
+            "three word address",
+            "{whatThreewordOrigin}"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "CheckOrderIntent",
+          "slots": [],
+          "samples": [
+            "check uber",
+            "check ride",
+            "where is uber",
+            "what is the status of my uber",
+            "where is my ride",
+            "check my ride",
+            "check the ride",
+            "is my taxi coming",
+            "is my uber coming",
+            "what is the status of my ride",
+            "check my uber ride",
+            "check the order",
+            "check my order",
+            "check if taxi is coming",
+            "check uber status",
+            "check order",
+            "check uber ride"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "CancelOrderIntent",
+          "slots": [],
+          "samples": [
+            "cancel ride",
+            "cancel taxi",
+            "cancel uber",
+            "cancel my taxi",
+            "cancel my order",
+            "cancel my uber",
+            "delete ride",
+            "delete taxi",
+            "delete uber",
+            "delete my taxi"
+          ]
+        },
+        {
+          "name": "GetTaxiFromDeviceIntent",
+          "slots": [],
+          "samples": [
+            "my g. p. s.",
+            "use g. p. s.",
+            "use my g. p. s.",
+            "my phone location ",
+            "my g. p. s. location",
+            "use g. p. s. device",
+            "device g. p. s. location",
+            "g. p. s.",
+            "g. p. s. of my device ",
+            "device address",
+            "the device address",
+            "device",
+            "here",
+            "use device address",
+            "device to",
+            "you can use the device address",
+            "my address",
+            "my location ",
+            "my device location ",
+            "current g. p. s. location ",
+            "g. p. s. location ",
+            "current location "
+          ]
+        },
+        {
+          "name": "GetTaxi",
+          "slots": [
+            {
+              "name": "whatThreewordDest",
+              "type": "whatThreewords",
+              "samples": [
+                "{whatThreewordDest}",
+                "i would like to go to {whatThreewordDest} please",
+                "take me to {whatThreewordDest} please",
+                "{whatThreewordDest} please",
+                "take me to {whatThreewordDest}",
+                "my destination's what three words are {whatThreewordDest}",
+                "i want an uber to take me to {whatThreewordDest}",
+                "i need a taxi to {whatThreewordDest}",
+                "my destination is {whatThreewordDest}",
+                "at the what three words {whatThreewordDest}",
+                "at {whatThreewordDest}",
+                "i want a lift to {whatThreewordDest}",
+                "I would like to go to {whatThreewordDest}"
+              ]
+            },
+            {
+              "name": "whatThreewordOrigin",
+              "type": "whatThreewords"
+            }
+          ],
+          "samples": [
+            "order me an Uber",
+            "get a ride from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get a ride to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get ride to {whatThreewordDest}",
+            "order me a ride to {whatThreewordDest}",
+            "get me a ride to {whatThreewordDest}",
+            "get a ride to {whatThreewordDest}",
+            "get me a ride to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get me a ride from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order me a ride from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order me a ride to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get me a ride",
+            "order me a ride",
+            "get an uber",
+            "get an uber to {whatThreewordDest}",
+            "get an uber to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get an uber from {whatThreewordOrigin} to {whatThreewordDest} ",
+            "order me a uber to a three word address",
+            "order me a taxi to three word address",
+            "order me a taxi with three word address",
+            "order me an uber with three word address",
+            "order me a taxi to a three word address",
+            "get a taxi to {whatThreewordDest}",
+            "get me taxi to {whatThreewordDest}",
+            "get me a taxi to {whatThreewordDest}",
+            "order a taxi to {whatThreewordDest}",
+            "order me a taxi to {whatThreewordDest}",
+            "taxi to {whatThreewordDest}",
+            "a taxi to {whatThreewordDest}",
+            "get a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get taxi to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get me a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
+            "order a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
+            "order me a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
+            "taxi to {whatThreewordDest} from {whatThreewordOrigin}",
+            "a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get taxi from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get me a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order me a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
+            "taxi from {whatThreewordOrigin} to {whatThreewordDest}",
+            "a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get a taxi",
+            "get taxi",
+            "get me a taxi",
+            "order a taxi",
+            "order me a taxi",
+            "taxi",
+            "a taxi",
+            "book a taxi to {whatThreewordDest}",
+            "get me an uber to {whatThreewordDest}",
+            "order an uber to {whatThreewordDest}",
+            "get uber to {whatThreewordDest}",
+            "order me an uber to {whatThreewordDest}",
+            "uber to {whatThreewordDest}",
+            "an uber to {whatThreewordDest}",
+            "get me a cab to {whatThreewordDest}",
+            "order a cab to {whatThreewordDest}",
+            "get a cab to {whatThreewordDest}",
+            "get cab to {whatThreewordDest}",
+            "order me a cab to {whatThreewordDest}",
+            "cab to {whatThreewordDest}",
+            "a cab to {whatThreewordDest}",
+            "book a taxi to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get me an uber to {whatThreewordDest} from {whatThreewordOrigin}",
+            "order an uber to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get uber to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get me uber to {whatThreewordDest} from {whatThreewordOrigin}",
+            "order me an uber to {whatThreewordDest} from {whatThreewordOrigin}",
+            "uber to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get me a cab to {whatThreewordDest} from {whatThreewordOrigin}",
+            "order a cab to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get a cab to {whatThreewordDest} from {whatThreewordOrigin}",
+            "get me cab to {whatThreewordDest} from {whatThreewordOrigin}",
+            "order me a cab to {whatThreewordDest} from {whatThreewordOrigin}",
+            "cab to {whatThreewordDest} from {whatThreewordOrigin}",
+            "a cab to {whatThreewordDest} from {whatThreewordOrigin}",
+            "book a taxi from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get me an uber from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order an uber from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get uber from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order me an uber from {whatThreewordOrigin} to {whatThreewordDest}",
+            "uber from {whatThreewordOrigin} to {whatThreewordDest}",
+            "an uber from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get me a cab from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order a cab from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get a cab from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get me cab from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order me a cab from {whatThreewordOrigin} to {whatThreewordDest}",
+            "cab from {whatThreewordOrigin} to {whatThreewordDest}",
+            "a cab from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order me a taxi with what three words",
+            "book a taxi",
+            "get me an uber",
+            "order an uber",
+            "get uber",
+            "order us an uber",
+            "uber",
+            "an uber",
+            "get me a cab",
+            "order a cab",
+            "get a cab",
+            "get cab",
+            "order me a cab",
+            "cab",
+            "a cab",
+            "order me a cab with what three words",
+            "book a cab",
+            "book a cab to {whatThreewordDest}",
+            "book a cab to {whatThreewordDest} from {whatThreewordOrigin}",
+            "book a cab from {whatThreewordOrigin} to {whatThreewordDest}",
+            "order me an uber with what three words",
+            "book an uber",
+            "book an uber to {whatThreewordDest}",
+            "book an uber to {whatThreewordDest} from {whatThreewordOrigin}",
+            "book an uber from {whatThreewordOrigin} to {whatThreewordDest}",
+            "get an uber from {whatThreewordOrigin}",
+            "get a taxi from {whatThreewordOrigin}",
+            "get me taxi from {whatThreewordOrigin}",
+            "get me a taxi from {whatThreewordOrigin}",
+            "order a taxi from {whatThreewordOrigin}",
+            "order me a taxi from {whatThreewordOrigin}",
+            "taxi from {whatThreewordOrigin}",
+            "a taxi from {whatThreewordOrigin}",
+            "book a taxi from {whatThreewordOrigin}",
+            "get me an uber from {whatThreewordOrigin}",
+            "order an uber from {whatThreewordOrigin}",
+            "get uber from {whatThreewordOrigin}",
+            "uber from {whatThreewordOrigin}",
+            "order me an uber from {whatThreewordOrigin}",
+            "an uber from {whatThreewordOrigin}",
+            "get me a cab from {whatThreewordOrigin}",
+            "order a cab from {whatThreewordOrigin}",
+            "get a cab from {whatThreewordOrigin}",
+            "get me cab from {whatThreewordOrigin}",
+            "order me a cab from {whatThreewordOrigin}",
+            "cab from {whatThreewordOrigin}",
+            "a cab from {whatThreewordOrigin}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "whatThreewords",
+          "values": [
+            {
+              "name": {
+                "value": "filled count soap"
+              }
+            },
+            {
+              "name": {
+                "value": "index home raft"
+              }
+            },
+            {
+              "name": {
+                "value": "split bolts brains"
+              }
+            },
+            {
+              "name": {
+                "value": "hotels loses roofs"
+              }
+            },
+            {
+              "name": {
+                "value": "pigs stamp unity"
+              }
+            },
+            {
+              "name": {
+                "value": "curve held clap"
+              }
+            },
+            {
+              "name": {
+                "value": "waving wiped weedy"
+              }
+            },
+            {
+              "name": {
+                "value": "vocal send famous"
+              }
+            },
+            {
+              "name": {
+                "value": "pirate share squad"
+              }
+            },
+            {
+              "name": {
+                "value": "cycles grew fleet"
+              }
+            },
+            {
+              "name": {
+                "value": "rabble closet cave"
+              }
+            },
+            {
+              "name": {
+                "value": "body hoping dime"
+              }
+            },
+            {
+              "name": {
+                "value": "phones tomato vivid"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "GetTaxiFromThreeWordsIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "whatThreewordOrigin",
+              "type": "whatThreewords",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.856138527888.200732450392"
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetTaxiFromDeviceIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": []
+        },
+        {
+          "name": "GetTaxi",
+          "delegationStrategy": "ALWAYS",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "whatThreewordDest",
+              "type": "whatThreewords",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1412151498554.1252618027283"
+              }
+            },
+            {
+              "name": "whatThreewordOrigin",
+              "type": "whatThreewords",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {}
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.865830253477.986684661633",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what three word address are you looking for?"
+          }
         ]
-    }
+      },
+      {
+        "id": "Elicit.Slot.856138527888.200732450392",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Where do you want to be picked up from?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1244858290138.4652061210",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "where would you like to go?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1412151498554.1252618027283",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What three word address would you like to go to?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.425053352077.1282420019429",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Where do you want to picked up from?"
+          }
+        ]
+      }
+    ]
+  }
 }

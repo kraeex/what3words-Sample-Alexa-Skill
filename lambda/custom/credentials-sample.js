@@ -7,7 +7,6 @@ module.exports = {
     server_token: "xxxxxx",
     redirect_uri: "xxxxxxxxx",
     name: "xxxxxxxxxx",
-    google_maps: "xxxxxxxxxxxx",
     w3wUrl: "https://api.what3words.com/v3"
   }
 };

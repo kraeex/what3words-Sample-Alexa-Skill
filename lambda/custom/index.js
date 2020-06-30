@@ -6,7 +6,6 @@ const rp = require("request-promise");
 const Geocoder = require("w3w-node-wrapper");
 const i18n = require("i18next");
 const sprintf = require("i18next-sprintf-postprocessor");
-const uuidv4 = require("uuid/v4");
 
 const credentials = require("./credentials.js");
 
@@ -17,7 +16,6 @@ const client_secret = credentials.credentials.client_secret;
 const server_token = credentials.credentials.server_token;
 const redirect_uri = credentials.credentials.redirect_uri;
 const name = credentials.credentials.name;
-const google_maps = credentials.credentials.google_maps;
 const w3wUrl = "https://api.what3words.com/v3";
 
 const w3woptions = {
@@ -513,108 +511,169 @@ const CompletedGetTaxiHandler = {
               .speak(requestAttributes.t("NO_COMPLETE_ADDRESS"))
               .getResponse();
           } else {
-            const originAdress = `${address.addressLine1},${address.postalCode}`;
-            let latStart;
-            let lngStart;
-            var geocodeLink = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(
-              originAdress
-            )}&key=${google_maps}`;
             return new Promise((resolve, reject) => {
-              rp(geocodeLink)
-                .then(function(originCoord) {
-                  var originCoord = JSON.parse(originCoord);
-                  if (originCoord.results[0] != null) {
-                    latStart = originCoord.results[0].geometry.location.lat;
-                    lngStart = originCoord.results[0].geometry.location.lng;
-                    console.log("coordinates", latStart, lngStart);
-                    if (whatThreewordOrigin) {
-                      var whatThreewordOriginlength = whatThreewordOrigin.split(
-                        " "
-                      ).length;
-                      if (whatThreewordOriginlength == 3) {
-                        let what3wordOrigin = encodeURI(whatThreewordOrigin);
-                        let what3wordsDest = encodeURI(whatThreewordDest);
-                        console.log(what3wordOrigin, what3wordsDest);
+              if (whatThreewordOrigin) {
+                var whatThreewordOriginlength = whatThreewordOrigin.split(" ")
+                  .length;
+                if (whatThreewordOriginlength == 3) {
+                  let what3wordOrigin = encodeURI(whatThreewordOrigin);
+                  let what3wordsDest = encodeURI(whatThreewordDest);
+                  console.log(what3wordOrigin, what3wordsDest);
 
-                        let latStartSuggestions;
-                        let lngStartSuggestions;
-                        let latDestinationSuggestions;
-                        let lonDestinationSuggestions;
-                        let destinationWords;
-                        let originWords;
-                        let originPlace;
-                        let options = {
+                  let latStartSuggestions;
+                  let lngStartSuggestions;
+                  let latDestinationSuggestions;
+                  let lonDestinationSuggestions;
+                  let destinationWords;
+                  let originWords;
+                  let originPlace;
+                  let options = {
+                    method: "GET",
+                    url: `${w3wUrl}/autosuggest?input=${what3wordOrigin}&input-type=generic-voice&key=${w3w_apiKey}&language=en`,
+                    headers: {}
+                  };
+
+                  getRequest(options)
+                    .then(response => {
+                      var originSuggestions = JSON.parse(response);
+                      console.log(originSuggestions.suggestions[0]);
+                      if (
+                        typeof originSuggestions.suggestions[0] == "undefined"
+                      ) {
+                        console.log("cannot find pickup w3w");
+                        var speechOutput = requestAttributes.t("noPickupLong");
+                        resolve(
+                          handlerInput.responseBuilder
+                            .speak(speechOutput)
+                            .reprompt(speechOutput)
+                            .getResponse()
+                        );
+                      } else {
+                        originWords = originSuggestions.suggestions[0].words;
+                        originPlace = originSuggestions.suggestions[0].nearestPlace.split(
+                          ","
+                        );
+                        let originToCoordinatesOptions = {
                           method: "GET",
-                          url: `${w3wUrl}/autosuggest?input=${what3wordOrigin}&input-type=generic-voice&key=${w3w_apiKey}&language=en`,
+                          url: `${w3wUrl}/convert-to-coordinates?words=${originWords}&key=${w3w_apiKey}`,
                           headers: {}
                         };
-
-                        getRequest(options)
+                        getRequest(originToCoordinatesOptions)
                           .then(response => {
-                            var originSuggestions = JSON.parse(response);
-                            console.log(originSuggestions.suggestions[0]);
+                            var originToCoordinates = JSON.parse(response);
                             if (
-                              typeof originSuggestions.suggestions[0] ==
+                              typeof originToCoordinates.coordinates !=
                               "undefined"
                             ) {
-                              console.log("cannot find pickup w3w");
-                              var speechOutput = requestAttributes.t(
-                                "noPickupLong"
-                              );
-                              resolve(
-                                handlerInput.responseBuilder
-                                  .speak(speechOutput)
-                                  .reprompt(speechOutput)
-                                  .getResponse()
-                              );
-                            } else {
-                              originWords =
-                                originSuggestions.suggestions[0].words;
-                              originPlace = originSuggestions.suggestions[0].nearestPlace.split(
-                                ","
-                              );
-                              let originToCoordinatesOptions = {
+                              latStartSuggestions =
+                                originToCoordinates.coordinates.lat;
+                              lngStartSuggestions =
+                                originToCoordinates.coordinates.lng;
+                              let destinationQuery = {
                                 method: "GET",
-                                url: `${w3wUrl}/convert-to-coordinates?words=${originWords}&key=${w3w_apiKey}`,
+                                url: `${w3wUrl}/autosuggest?input=${what3wordsDest}&input-type=generic-voice&key=${w3w_apiKey}&language=en`,
                                 headers: {}
                               };
-                              getRequest(originToCoordinatesOptions)
+
+                              getRequest(destinationQuery)
                                 .then(response => {
-                                  var originToCoordinates = JSON.parse(
+                                  var destinationSuggestions = JSON.parse(
                                     response
                                   );
+                                  console.log(
+                                    destinationSuggestions.suggestions[0]
+                                  );
                                   if (
-                                    typeof originToCoordinates.coordinates !=
-                                    "undefined"
+                                    typeof destinationSuggestions
+                                      .suggestions[0] == "undefined"
                                   ) {
-                                    latStartSuggestions =
-                                      originToCoordinates.coordinates.lat;
-                                    lngStartSuggestions =
-                                      originToCoordinates.coordinates.lng;
-                                    let destinationQuery = {
+                                    console.log("cannot find destination w3w");
+                                    var speechOutput = requestAttributes.t(
+                                      "noDestination"
+                                    );
+                                    resolve(
+                                      handlerInput.responseBuilder
+                                        .speak(speechOutput)
+                                        .reprompt(speechOutput)
+                                        .getResponse()
+                                    );
+                                  } else {
+                                    destinationWords =
+                                      destinationSuggestions.suggestions[0]
+                                        .words;
+                                    let pls = destinationSuggestions.suggestions[0].nearestPlace.split(
+                                      ","
+                                    );
+
+                                    let destinationToCoordinatesOptions = {
                                       method: "GET",
-                                      url: `${w3wUrl}/autosuggest?input=${what3wordsDest}&input-type=generic-voice&key=${w3w_apiKey}&language=en`,
+                                      url: `${w3wUrl}/convert-to-coordinates?words=${destinationWords}&key=${w3w_apiKey}`,
                                       headers: {}
                                     };
-
-                                    getRequest(destinationQuery)
+                                    getRequest(destinationToCoordinatesOptions)
                                       .then(response => {
-                                        var destinationSuggestions = JSON.parse(
+                                        var destinationToCoordinates = JSON.parse(
                                           response
                                         );
-                                        console.log(
-                                          destinationSuggestions.suggestions[0]
-                                        );
                                         if (
-                                          typeof destinationSuggestions
-                                            .suggestions[0] == "undefined"
+                                          typeof destinationToCoordinates.coordinates !=
+                                          "undefined"
                                         ) {
-                                          console.log(
-                                            "cannot find destination w3w"
+                                          latDestinationSuggestions =
+                                            destinationToCoordinates.coordinates
+                                              .lat;
+                                          lonDestinationSuggestions =
+                                            destinationToCoordinates.coordinates
+                                              .lng;
+
+                                          let order = {
+                                            originWords: originWords,
+                                            destinationWords: destinationWords,
+                                            latStart: latStartSuggestions,
+                                            lngStart: lngStartSuggestions,
+                                            latDestination: latDestinationSuggestions,
+                                            lonDestination: lonDestinationSuggestions,
+                                            place: pls[0],
+                                            originPlace: originPlace[0],
+                                            originSpoken: what3wordOrigin,
+                                            destinationSpoken: what3wordsDest,
+                                            confirmedAddress: true
+                                          };
+
+                                          handlerInput.attributesManager.setSessionAttributes(
+                                            order
                                           );
+                                          destinationWords = destinationWords.split(
+                                            "."
+                                          );
+                                          originWords = originWords.split(".");
+
+                                          let plsDest;
+                                          let plsOrig;
+                                          if (pls[0] !== "") {
+                                            plsDest = ` near ${pls[0]}, `;
+                                          } else {
+                                            plsDest = ` `;
+                                          }
+                                          if (originPlace[0] !== "") {
+                                            plsOrig = ` near ${
+                                              originPlace[0]
+                                            } `;
+                                          } else {
+                                            plsOrig = ` `;
+                                          }
                                           var speechOutput = requestAttributes.t(
-                                            "noDestination"
+                                            "findAddress",
+                                            destinationWords[0],
+                                            destinationWords[1],
+                                            destinationWords[2],
+                                            plsDest,
+                                            originWords[0],
+                                            originWords[1],
+                                            originWords[2],
+                                            plsOrig
                                           );
+
                                           resolve(
                                             handlerInput.responseBuilder
                                               .speak(speechOutput)
@@ -622,121 +681,18 @@ const CompletedGetTaxiHandler = {
                                               .getResponse()
                                           );
                                         } else {
-                                          destinationWords =
-                                            destinationSuggestions
-                                              .suggestions[0].words;
-                                          let pls = destinationSuggestions.suggestions[0].nearestPlace.split(
-                                            ","
+                                          console.log(
+                                            "error at getw3wSuggestions: ",
+                                            error
                                           );
-
-                                          let destinationToCoordinatesOptions = {
-                                            method: "GET",
-                                            url: `${w3wUrl}/convert-to-coordinates?words=${destinationWords}&key=${w3w_apiKey}`,
-                                            headers: {}
-                                          };
-                                          getRequest(
-                                            destinationToCoordinatesOptions
-                                          )
-                                            .then(response => {
-                                              var destinationToCoordinates = JSON.parse(
-                                                response
-                                              );
-                                              if (
-                                                typeof destinationToCoordinates.coordinates !=
-                                                "undefined"
-                                              ) {
-                                                latDestinationSuggestions =
-                                                  destinationToCoordinates
-                                                    .coordinates.lat;
-                                                lonDestinationSuggestions =
-                                                  destinationToCoordinates
-                                                    .coordinates.lng;
-
-                                                let order = {
-                                                  originWords: originWords,
-                                                  destinationWords: destinationWords,
-                                                  latStart: latStartSuggestions,
-                                                  lngStart: lngStartSuggestions,
-                                                  latDestination: latDestinationSuggestions,
-                                                  lonDestination: lonDestinationSuggestions,
-                                                  place: pls[0],
-                                                  originPlace: originPlace[0],
-                                                  originSpoken: what3wordOrigin,
-                                                  destinationSpoken: what3wordsDest,
-                                                  confirmedAddress: true
-                                                };
-
-                                                handlerInput.attributesManager.setSessionAttributes(
-                                                  order
-                                                );
-                                                destinationWords = destinationWords.split(
-                                                  "."
-                                                );
-                                                originWords = originWords.split(
-                                                  "."
-                                                );
-
-                                                let plsDest;
-                                                let plsOrig;
-                                                if (pls[0] !== "") {
-                                                  plsDest = ` near ${pls[0]}, `;
-                                                } else {
-                                                  plsDest = ` `;
-                                                }
-                                                if (originPlace[0] !== "") {
-                                                  plsOrig = ` near ${
-                                                    originPlace[0]
-                                                  } `;
-                                                } else {
-                                                  plsOrig = ` `;
-                                                }
-                                                var speechOutput = requestAttributes.t(
-                                                  "findAddress",
-                                                  destinationWords[0],
-                                                  destinationWords[1],
-                                                  destinationWords[2],
-                                                  plsDest,
-                                                  originWords[0],
-                                                  originWords[1],
-                                                  originWords[2],
-                                                  plsOrig
-                                                );
-
-                                                resolve(
-                                                  handlerInput.responseBuilder
-                                                    .speak(speechOutput)
-                                                    .reprompt(speechOutput)
-                                                    .getResponse()
-                                                );
-                                              } else {
-                                                console.log(
-                                                  "error at getw3wSuggestions: ",
-                                                  error
-                                                );
-                                                var speechOutput = requestAttributes.t(
-                                                  "noLocation"
-                                                );
-                                                resolve(
-                                                  handlerInput.responseBuilder
-                                                    .speak(speechOutput)
-                                                    .getResponse()
-                                                );
-                                              }
-                                            })
-                                            .catch(error => {
-                                              console.log(
-                                                "error at getw3wSuggestions: ",
-                                                error
-                                              );
-                                              var speechOutput = requestAttributes.t(
-                                                "noLocation"
-                                              );
-                                              resolve(
-                                                handlerInput.responseBuilder
-                                                  .speak(speechOutput)
-                                                  .getResponse()
-                                              );
-                                            });
+                                          var speechOutput = requestAttributes.t(
+                                            "noLocation"
+                                          );
+                                          resolve(
+                                            handlerInput.responseBuilder
+                                              .speak(speechOutput)
+                                              .getResponse()
+                                          );
                                         }
                                       })
                                       .catch(error => {
@@ -745,7 +701,7 @@ const CompletedGetTaxiHandler = {
                                           error
                                         );
                                         var speechOutput = requestAttributes.t(
-                                          "NO_W3W_ADDRESS"
+                                          "noLocation"
                                         );
                                         resolve(
                                           handlerInput.responseBuilder
@@ -757,11 +713,11 @@ const CompletedGetTaxiHandler = {
                                 })
                                 .catch(error => {
                                   console.log(
-                                    "error at getw3wSuggestionsnofocus: ",
+                                    "error at getw3wSuggestions: ",
                                     error
                                   );
                                   var speechOutput = requestAttributes.t(
-                                    "noThreeWordAddress"
+                                    "NO_W3W_ADDRESS"
                                   );
                                   resolve(
                                     handlerInput.responseBuilder
@@ -777,7 +733,7 @@ const CompletedGetTaxiHandler = {
                               error
                             );
                             var speechOutput = requestAttributes.t(
-                              "NO_W3W_ADDRESS"
+                              "noThreeWordAddress"
                             );
                             resolve(
                               handlerInput.responseBuilder
@@ -785,69 +741,65 @@ const CompletedGetTaxiHandler = {
                                 .getResponse()
                             );
                           });
-                      } else {
-                        console.log("NO FULL ORIGIN");
-                        var speechOutput = requestAttributes.t(
-                          "wrongPickup",
-                          whatThreewordOrigin
-                        );
-                        resolve(
-                          handlerInput.responseBuilder
-                            .speak(speechOutput)
-                            .reprompt(speechOutput)
-                            .getResponse()
-                        );
                       }
-                    } else {
-                      console.log("NO ORIGIN");
-                      let coordinates = {
-                        latdevice: latStart,
-                        lngdevice: lngStart,
-                        deviceAddress: address.addressLine1,
-                        whatThreewordDest: whatThreewordDest,
-                        confirmedDestination: true
-                      };
-                      console.log(
-                        "low accuracy attribute coordinates",
-                        coordinates
+                    })
+                    .catch(error => {
+                      console.log("error at getw3wSuggestionsnofocus: ", error);
+                      var speechOutput = requestAttributes.t("NO_W3W_ADDRESS");
+                      resolve(
+                        handlerInput.responseBuilder
+                          .speak(speechOutput)
+                          .getResponse()
                       );
-                      handlerInput.attributesManager.setSessionAttributes(
-                        coordinates
-                      );
-                      let speechOutput;
-                      if (isGeoSupported) {
-                        speechOutput = requestAttributes.t("gpsOff");
-                        resolve(
-                          handlerInput.responseBuilder
-                            .speak(speechOutput)
-                            .reprompt(speechOutput)
-                            .withAskForPermissionsConsentCard([
-                              "alexa::devices:all:geolocation:read"
-                            ])
-                            .getResponse()
-                        );
-                      } else {
-                        speechOutput = requestAttributes.t("whatPickup");
-                        resolve(
-                          handlerInput.responseBuilder
-                            .speak(speechOutput)
-                            .reprompt(speechOutput)
-                            .getResponse()
-                        );
-                      }
-                    }
-                  } else {
-                    console.log("no coordinates");
-                  }
-                })
-                .catch(error => {
-                  console.log("error at getw3wSuggestions: ", error);
+                    });
+                } else {
+                  console.log("NO FULL ORIGIN");
+                  var speechOutput = requestAttributes.t(
+                    "wrongPickup",
+                    whatThreewordOrigin
+                  );
                   resolve(
                     handlerInput.responseBuilder
-                      .speak(requestAttributes.t("NO_W3W_CONNECTION"))
+                      .speak(speechOutput)
+                      .reprompt(speechOutput)
                       .getResponse()
                   );
-                });
+                }
+              } else {
+                console.log("NO ORIGIN");
+                let coordinates = {
+                  // latdevice: latStart,
+                  // lngdevice: lngStart,
+                  deviceAddress: address.addressLine1,
+                  whatThreewordDest: whatThreewordDest,
+                  confirmedDestination: true
+                };
+                console.log("low accuracy attribute coordinates", coordinates);
+                handlerInput.attributesManager.setSessionAttributes(
+                  coordinates
+                );
+                let speechOutput;
+                if (isGeoSupported) {
+                  speechOutput = requestAttributes.t("gpsOff");
+                  resolve(
+                    handlerInput.responseBuilder
+                      .speak(speechOutput)
+                      .reprompt(speechOutput)
+                      .withAskForPermissionsConsentCard([
+                        "alexa::devices:all:geolocation:read"
+                      ])
+                      .getResponse()
+                  );
+                } else {
+                  speechOutput = requestAttributes.t("whatPickup");
+                  resolve(
+                    handlerInput.responseBuilder
+                      .speak(speechOutput)
+                      .reprompt(speechOutput)
+                      .getResponse()
+                  );
+                }
+              }
             });
           }
         } catch (error) {
@@ -1183,8 +1135,8 @@ const CompletedGetTaxiFromThreeWordsIntentHandler = {
                       if (
                         typeof originToCoordinates.coordinates != "undefined"
                       ) {
-                        latStart = originToCoordinates.coordinates.lat;
-                        lngStart = originToCoordinates.coordinates.lng;
+                        let latStart = originToCoordinates.coordinates.lat;
+                        let lngStart = originToCoordinates.coordinates.lng;
                         let destinationQuery = {
                           method: "GET",
                           url: `${w3wUrl}/autosuggest?input=${what3wordsDest}&input-type=generic-voice&key=${w3w_apiKey}&language=en`,
@@ -1400,8 +1352,6 @@ const NoCorrectAddressHandler = {
     const attributes = handlerInput.attributesManager.getSessionAttributes();
     const timestamp = new Date().toISOString();
     const userID = handlerInput.requestEnvelope.context.System.user.userId;
-    const uuid = uuidv4();
-    const session = `${uuid}-${timestamp}`;
     let speechOutput = requestAttributes.t("actionOption");
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -1684,8 +1634,6 @@ const NoConfirmOrderHandler = {
     const attributes = handlerInput.attributesManager.getSessionAttributes();
     const timestamp = new Date().toISOString();
     const userID = handlerInput.requestEnvelope.context.System.user.userId;
-    const uuid = uuidv4();
-    const session = `${uuid}-${timestamp}`;
     let speechOutput = requestAttributes.t("Goodbye");
     return handlerInput.responseBuilder.speak(speechOutput).getResponse();
   }
@@ -1708,8 +1656,6 @@ const YesConfirmOrderHandler = {
     const attributes = handlerInput.attributesManager.getSessionAttributes();
     const timestamp = new Date().toISOString();
     const userID = handlerInput.requestEnvelope.context.System.user.userId;
-    const uuid = uuidv4();
-    const session = `${uuid}-${timestamp}`;
     let accessToken =
       handlerInput.requestEnvelope.context.System.user.accessToken;
     if (accessToken == undefined) {

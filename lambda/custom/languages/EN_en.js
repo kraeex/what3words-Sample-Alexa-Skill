@@ -18,14 +18,14 @@ module.exports = {
     titleUber: `%s to %s`,
     orderCard: `Your %s %s is %s minutes away.`,
     orderConfirm: "Do you want to confirm the order?",
-    SKILL_NAME: "three word go",
+    SKILL_NAME: "Three Word Go",
     HELP_MESSAGE:
-      " I can help you order an uber to a three word address! You can try: 'alexa, ask three word go to order me an uber'",
+      " I can help you order an uber to a three word address! You can try: 'alexa, ask Three Word Go to order me an uber'",
     HELP_REPROMPT:
       "You can ask me to order you an uber to a three word address",
     STOP_MESSAGE: "Goodbye!",
     WELCOME_MESSAGE:
-      "Welcome to three word go by what three words! You can ask me to get you an uber to a three word address. You can say 'order me an Uber'",
+      "Welcome to Three Word Go! You can ask me to get you an uber to a three word address. You can say 'order me an Uber'",
     WELCOME_REPROMPT:
       "You can ask me to order you an uber to a three word address",
     NOTIFY_MISSING_PERMISSIONS:
@@ -34,7 +34,7 @@ module.exports = {
     LOCATION_FAILURE:
       "There was an error with the Device Address. Please try again.",
     UNHANDLED:
-      "Sorry, I didn't get that. You can try: alexa, ask three word go to order me an uber.",
+      "Sorry, I didn't get that. You can try: alexa, ask Three Word Go to order me an uber.",
     PERMISSIONS: ["read::alexa:device:all:address"],
     HAVE_UBER_ACCOUNT:
       "You must have an Uber account to order a ride. Please use the Alexa app to link your Uber Account.",
@@ -48,7 +48,6 @@ module.exports = {
     UBER_CONNECTION_ERROR:
       "Sorry I had a problem connecting with your Uber account. Please try again.",
     UBER_CANCELLATION: "You can cancel your ride in the Uber app",
-    // "A cancellation fee may apply if you cancel once a ride is requested. Please use your Uber mobile app to cancel your ride.",
     NO_COMPLETE_ADDRESS:
       "It looks like you haven't setup your device address. You can set it up on the Alexa app.",
     SURGED_PRICE: `It is busy out there! Surge pricing is currently in effect for this trip. Unfortunately you cannot complete the order on Alexa. Please use your Uber app.`,

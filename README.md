@@ -9,7 +9,6 @@
 - The sample code on [GitHub](https://github.com/w3w-internal/3-word-go-open-source).
 - A basic understanding of Node.js.
 - [Uber](https://developer.uber.com) API access
-- [Google Maps API](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ## What Your Skill Will Do
 

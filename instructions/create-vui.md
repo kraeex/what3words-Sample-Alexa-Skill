@@ -26,7 +26,7 @@ In the panel on the left, go to Interaction Model > JSON Editor, and then copy i
 
 # Learn More about Building an Alexa Skill Voice User Interface with what3words
 
-The [interactive model](../models/interaction_model.json) file contains all the intents and slots needed by the skill to work, but if you want to learn how to create your own what3words slots, read the instructions below.
+The [interaction model](../models/interaction_model.json) file contains all the intents and slots needed by the skill to work, but if you want to learn how to create your own what3words slots, read the instructions below.
 
 ## Creating a Custom Interaction Model (Optional)
 

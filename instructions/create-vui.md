@@ -18,7 +18,7 @@ For instance, a sample for ordering an Uber with What3Words might be:
 order an uber from {whatThreewordOrigin} to {whatThreewordDest}
 ```
 
-We have provided a sample interaction model here: [interaction_model.json] …
+We have provided a sample interaction model here: [interaction model](../models/interaction_model.json)
 
 In the panel on the left, go to Interaction Model > JSON Editor, and then copy in the contents of [interaction_model.json]. Click 'Save', and then 'Build Model'.
 

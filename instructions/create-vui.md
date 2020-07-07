@@ -2,7 +2,7 @@
 
 ## Step 1: Create a New Skill
 
-Set up an account at https://developer.amazon.com. From the dashboard menu, go to Alexa > Alexa Skills Kit, or go to https://developer.amazon.com/alexa/console/ask and create a new skill by clicking at "Create Skill"
+Set up an account at https://developer.amazon.com. From the dashboard menu, go to Alexa > Alexa Skills Kit, or go to https://developer.amazon.com/alexa/console/ask and create a new skill by clicking on "Create Skill"
 <img src="./images/intro.png" />
 Select a "Skill name", a "custom" model, and an "Alexa-Hosted" backend. Click "Create Skill". This is the name that will be shown in the Alexa Skills Store, and the name your users will refer to. Additionally, change the locale if so desired.
 <img src="./images/create_skill.png" />

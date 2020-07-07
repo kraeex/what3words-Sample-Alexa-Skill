@@ -19,7 +19,6 @@ For the skill to work, you will need to get your own credentials for the followi
 
 - [what3words](https://developer.what3words.com/public-api)
 - [Uber](https://developer.uber.com)
-- [Google Maps](https://developers.google.com/maps/documentation/geocoding/start)
 
 Use your credentials to update the Skill:
 
@@ -31,9 +30,6 @@ const w3w_apiKey = "#####";
 const uber_url = "https://sandbox-api.uber.com/v1.2/";
 const server_token = "#####";
 const name = "###";
-
-//google maps API key
-const google_maps = "####";
 ```
 
 The Skill is using the [autosuggest](https://docs.what3words.com/api/v3/#autosuggest) endpoint of the what3words API in order to:
